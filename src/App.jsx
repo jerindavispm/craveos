@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
 import Landing from './components/Landing'
 import Dashboard from './components/Dashboard'
 import { generateDemoData } from './lib/seed'
@@ -63,24 +62,17 @@ export default function App() {
     setView('dashboard')
   }
 
-  return (
-    <AnimatePresence mode="wait">
-      {view === 'landing' ? (
-        <motion.div key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-          <Landing
-            workspaces={workspaces}
-            activeId={activeId}
-            onOpenDemo={handleOpenDemo}
-            onOpenWorkspace={handleOpenWorkspace}
-            onCreateCafe={handleCreateCafe}
-            onStartFresh={handleStartFresh}
-          />
-        </motion.div>
-      ) : (
-        <motion.div key="dashboard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-          <Dashboard onHome={() => { bump(); setView('landing') }} version={version} />
-        </motion.div>
-      )}
-    </AnimatePresence>
+  return view === 'landing' ? (
+    <Landing
+      key="landing"
+      workspaces={workspaces}
+      activeId={activeId}
+      onOpenDemo={handleOpenDemo}
+      onOpenWorkspace={handleOpenWorkspace}
+      onCreateCafe={handleCreateCafe}
+      onStartFresh={handleStartFresh}
+    />
+  ) : (
+    <Dashboard key="dashboard" onHome={() => { bump(); setView('landing') }} version={version} />
   )
 }
