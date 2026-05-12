@@ -174,8 +174,12 @@ export default function Landing({
           100% { background-position: 220% 50%; }
         }
         @keyframes sweep {
-          0% { transform: translateX(-120%); }
-          100% { transform: translateX(220%); }
+          0%   { transform: translateX(-120%); opacity: 0; }
+          18%  { opacity: 0; }
+          32%  { transform: translateX(-30%); opacity: 0.7; }
+          48%  { transform: translateX(80%); opacity: 0.7; }
+          62%  { transform: translateX(220%); opacity: 0; }
+          100% { transform: translateX(220%); opacity: 0; }
         }
       `}</style>
     </div>
@@ -200,9 +204,12 @@ function ShimmerButton({ children, onClick, primary }) {
         className="absolute inset-y-0 w-1/3"
         style={{
           background: primary
-            ? 'linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent)'
-            : 'linear-gradient(90deg, transparent, rgba(251,146,60,0.35), transparent)',
-          animation: primary ? 'sweep 3.2s ease-in-out infinite' : 'sweep 4.5s ease-in-out infinite',
+            ? 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)'
+            : 'linear-gradient(90deg, transparent, rgba(251,146,60,0.32), transparent)',
+          animation: primary
+            ? 'sweep 5.5s ease-in-out 2.5s infinite'
+            : 'sweep 6.5s ease-in-out 3.5s infinite',
+          opacity: 0,
         }}
       />
     </motion.button>
