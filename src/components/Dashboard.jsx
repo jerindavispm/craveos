@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Coffee, Pencil, Check, X, Download, Trash2, Eraser, ArrowLeft, Calendar, TrendingUp, AlertCircle } from 'lucide-react'
 import StatTile from './StatTile'
@@ -25,8 +25,10 @@ export default function Dashboard({ onHome, version }) {
   const [tab, setTab] = useState('overview')
   const [rainy, setRainy] = useState(false)
   const [weatherApplied, setWeatherApplied] = useState(false)
-  const [localBump, bump] = useState(0)
-  const refresh = () => bump((v) => v + 1)
+  const [workspace, setWorkspace] = useState(() => getActiveWorkspace())
+  const refresh = useCallback(() => setWorkspace(getActiveWorkspace()), [])
+
+  useEffect(() => { setWorkspace(getActiveWorkspace()) }, [version])
 
   const handleWeather = (w) => {
     if (!weatherApplied && w) {
@@ -37,8 +39,6 @@ export default function Dashboard({ onHome, version }) {
 
   const [confirmClear, setConfirmClear] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(false)
-
-  const workspace = useMemo(() => getActiveWorkspace(), [version, localBump])
   const forecast = useMemo(() => forecastTomorrow(workspace.entries, { rainy }), [workspace.entries, rainy])
   const trend = useMemo(() => weeklyTrend(workspace.entries, 14), [workspace.entries])
   const stats = useMemo(() => todayStats(workspace.entries, workspace.waste), [workspace.entries, workspace.waste])
