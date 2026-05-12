@@ -59,7 +59,8 @@ export default function WeatherBadge({ onWeather }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-2 rounded-full border border-neutral-700/80 bg-neutral-950/60 px-3 py-1.5 text-xs text-neutral-300 backdrop-blur transition hover:border-orange-400/40"
+        aria-label={`Weather${weather ? `: ${weather.label}` : ''} · ${location.name}`}
+        className="inline-flex items-center gap-2 rounded-full border border-neutral-700/80 bg-neutral-950/60 px-2 py-1.5 text-xs text-neutral-300 backdrop-blur transition hover:border-orange-400/40 sm:px-3"
       >
         {loading ? (
           <Loader2 size={14} className="animate-spin text-neutral-500" />
@@ -70,7 +71,7 @@ export default function WeatherBadge({ onWeather }) {
           {weather ? `${Math.round(weather.tempMax)}° · ${weather.label}` : '— · weather'}
         </span>
         <span className="hidden text-neutral-600 sm:inline">·</span>
-        <span className="max-w-[110px] truncate text-neutral-400">{location.name}</span>
+        <span className="hidden max-w-[110px] truncate text-neutral-400 sm:inline">{location.name}</span>
       </button>
 
       <AnimatePresence>

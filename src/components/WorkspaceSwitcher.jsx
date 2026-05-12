@@ -72,10 +72,11 @@ export default function WorkspaceSwitcher({ onChange }) {
       <div ref={ref} className="relative">
         <button
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-900/60 px-3 py-1.5 text-sm text-neutral-200 transition hover:border-orange-400/40"
+          aria-label={`Switch cafe (current: ${active.name})`}
+          className="inline-flex items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-900/60 px-2 py-1.5 text-sm text-neutral-200 transition hover:border-orange-400/40 sm:px-3"
         >
           <Coffee size={14} className="text-orange-300" />
-          {active.name}
+          <span className="hidden max-w-[140px] truncate sm:inline">{active.name}</span>
           <svg viewBox="0 0 24 24" className="size-3.5 text-neutral-500" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="m6 9 6 6 6-6" />
           </svg>

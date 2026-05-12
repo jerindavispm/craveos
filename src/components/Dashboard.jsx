@@ -88,24 +88,31 @@ export default function Dashboard({ onHome, version }) {
             <Logo />
             <span className="hidden sm:inline">CraveOS</span>
           </motion.button>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1 sm:gap-1.5">
             <WeatherBadge onWeather={handleWeather} />
             <WorkspaceSwitcher onChange={refresh} />
-            <button onClick={onExportCsv} className="hidden h-8 items-center gap-1.5 rounded-lg border border-neutral-800 px-3 text-xs text-neutral-300 transition hover:border-neutral-600 sm:inline-flex">
+            <button
+              onClick={onExportCsv}
+              className="hidden h-8 items-center gap-1.5 rounded-lg border border-neutral-800 px-3 text-xs text-neutral-300 transition hover:border-neutral-600 sm:inline-flex"
+            >
               <Download size={13} /> Export CSV
             </button>
             <button
               onClick={() => setConfirmClear(true)}
-              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-neutral-800 px-3 text-xs text-neutral-300 transition hover:border-amber-500/40 hover:text-amber-300"
+              aria-label="Clear data"
+              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-neutral-800 px-2 text-xs text-neutral-300 transition hover:border-amber-500/40 hover:text-amber-300 sm:px-3"
             >
-              <Eraser size={13} /> Clear data
+              <Eraser size={13} />
+              <span className="hidden sm:inline">Clear data</span>
             </button>
             {deletable && (
               <button
                 onClick={() => setConfirmDelete(true)}
-                className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-rose-500/30 px-3 text-xs text-rose-300 transition hover:bg-rose-500/10"
+                aria-label="Delete cafe"
+                className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-rose-500/30 px-2 text-xs text-rose-300 transition hover:bg-rose-500/10 sm:px-3"
               >
-                <Trash2 size={13} /> Delete cafe
+                <Trash2 size={13} />
+                <span className="hidden sm:inline">Delete cafe</span>
               </button>
             )}
           </div>

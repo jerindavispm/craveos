@@ -59,18 +59,21 @@ export default function QuickEntry({ workspace, onSaved }) {
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-100 focus:border-orange-400 focus:outline-none"
+          className="w-full rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-100 focus:border-orange-400 focus:outline-none sm:w-auto"
         />
       </div>
 
       <div className="space-y-1.5">
         {rows.map((row, i) => (
-          <div key={i} className="grid grid-cols-[1fr_80px_90px_28px] items-center gap-2">
+          <div
+            key={i}
+            className="grid grid-cols-[1fr_64px_72px_24px] items-center gap-1.5 sm:grid-cols-[1fr_80px_90px_28px] sm:gap-2"
+          >
             <input
               value={row.name}
               onChange={(e) => update(i, { name: e.target.value })}
               placeholder="Item"
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-orange-400 focus:outline-none"
+              className="min-w-0 rounded-lg border border-neutral-800 bg-neutral-950 px-2.5 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-orange-400 focus:outline-none sm:px-3"
             />
             <input
               value={row.qty}
@@ -78,17 +81,22 @@ export default function QuickEntry({ workspace, onSaved }) {
               type="number"
               min="0"
               placeholder="Qty"
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-orange-400 focus:outline-none"
+              className="min-w-0 rounded-lg border border-neutral-800 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-orange-400 focus:outline-none sm:px-3"
             />
             <input
               value={row.price}
               onChange={(e) => update(i, { price: e.target.value })}
               type="number"
               step="0.01"
-              placeholder="$ price"
-              className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-orange-400 focus:outline-none"
+              placeholder="$"
+              className="min-w-0 rounded-lg border border-neutral-800 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 placeholder:text-neutral-600 focus:border-orange-400 focus:outline-none sm:px-3"
             />
-            <button type="button" onClick={() => removeRow(i)} className="text-neutral-600 hover:text-neutral-300" aria-label="Remove">
+            <button
+              type="button"
+              onClick={() => removeRow(i)}
+              className="flex h-9 items-center justify-center text-neutral-600 hover:text-neutral-300"
+              aria-label="Remove"
+            >
               ×
             </button>
           </div>
