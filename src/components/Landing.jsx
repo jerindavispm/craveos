@@ -160,7 +160,23 @@ export default function Landing({
         </motion.div>
       </motion.aside>
 
-      <footer className="relative z-10 border-t border-neutral-900 px-6 py-6 text-center text-xs text-neutral-500 md:px-12">
+      <motion.aside
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
+        className="pointer-events-none fixed inset-x-0 bottom-4 z-20 flex flex-col items-center gap-1.5 lg:hidden"
+      >
+        <span className="text-[10px] font-medium uppercase tracking-wider text-neutral-500">Cafes</span>
+        <motion.div
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          className="pointer-events-auto"
+        >
+          <AnimatedDock items={dockItems} direction="horizontal" />
+        </motion.div>
+      </motion.aside>
+
+      <footer className="relative z-10 border-t border-neutral-900 px-6 py-6 pb-32 text-center text-xs text-neutral-500 md:px-12 lg:pb-6">
         Built by{' '}
         <a href="https://jerindavispm.github.io" className="text-neutral-300 hover:text-orange-300" target="_blank" rel="noreferrer">
           Jerin Davis
